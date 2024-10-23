@@ -1,0 +1,60 @@
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        self.queue = deque()
+
+    def enqueue(self, item):
+        self.queue.append(item)
+
+    def dequeue(self):
+        if self.is_empty():
+            print("Queue is empty.")
+            return None
+        return self.queue.popleft()
+
+    def peek(self):
+        if self.is_empty():
+            print("Queue is empty.")
+            return None
+        return self.queue[0]
+
+    def is_empty(self):
+        return len(self.queue) == 0
+
+    def display(self):
+        print("Queue:", list(self.queue))
+
+
+def main():
+    queue = Queue()
+    while True:
+        print("\n1. Enqueue")
+        print("2. Dequeue")
+        print("3. Peek")
+        print("4. Display Queue")
+        print("5. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            item = input("Enter item to enqueue: ")
+            queue.enqueue(item)
+            print(f"{item} enqueued to queue.")
+        elif choice == '2':
+            dequeued_item = queue.dequeue()
+            if dequeued_item is not None:
+                print(f"Dequeued item: {dequeued_item}")
+        elif choice == '3':
+            front_item = queue.peek()
+            if front_item is not None:
+                print(f"Front item: {front_item}")
+        elif choice == '4':
+            queue.display()
+        elif choice == '5':
+            break
+        else:
+            print("Invalid choice.")
+
+
+if __name__ == "__main__":
+    main()
